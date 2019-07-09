@@ -8,7 +8,7 @@
 import sys
 sys.path.append('../')
 from tkinter import filedialog, messagebox
-from tools import newidea,draaw
+from tools import newidea,draaw,find_area
 import os
 import glob
 import re
@@ -82,9 +82,11 @@ def save_stuff():
   
 
 
+def calc_vol():
 
+    result_vol = find_area.find_volume(file_list)
 
-
+    messagebox.showinfo("Result","Volume is" + str(result_vol) + "mm^3")
 
 
 

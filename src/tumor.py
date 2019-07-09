@@ -27,6 +27,9 @@ def vp_start_gui():
 	root = tk.Tk()
 	top = tumor (root)
 	tumor_support.init(root, top)
+	root.lift()
+	root.wm_attributes('-topmost',True)
+	root.after_idle(root.attributes,'-topmost',False)
 	root.mainloop()
 
 w = None
@@ -100,6 +103,12 @@ class tumor:
 		self.Button2.configure(text='''SAVE''')
 		self.Button2.configure(width=71)
 		self.Button2.configure(command = tumor_support.save_stuff)
+
+		self.Button3 = tk.Button(top)
+		self.Button3.place(relx=0.367, rely=0.867, height=41, width=181)
+		self.Button3.configure(text='''Calculate Volume''')
+		self.Button3.configure(width=181)
+		self.Button3.configure(command = tumor_support.calc_vol)
 
 	def file_l(self):
 		# print(tumor_support.file_list)

@@ -113,7 +113,8 @@ def input_file(path):
             break
         elif k ==27:
             print("code terminated")
-            exit(0)
+            break
+
     cv2.destroyAllWindows()
 
     
@@ -130,7 +131,7 @@ def input_file(path):
     # y_idx_min= np.where(y_min)
     except:
         print("please select a region")
-        return 
+        return 0.0
 
 
     im_cropped = im[y_min-4:y_max+4,x_min-4:x_max+4]
@@ -155,6 +156,7 @@ def input_file(path):
             cs[number] = count_pixel(im_use)
             # cs[number] = sum(temp)
             break
+        
         elif k ==27:
             print('code terminated')
             exit(0)

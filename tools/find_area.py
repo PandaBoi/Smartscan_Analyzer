@@ -1,4 +1,3 @@
-from draaw import *
 import re
 import numpy as np
 from math import *
@@ -43,6 +42,7 @@ def find_volume(areas):
 
 
 	print("volume of tumor(approx) is ",V,"mm^3")
+	return V
 
 
 # find_volume(areas)
