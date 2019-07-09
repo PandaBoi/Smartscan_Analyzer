@@ -6,7 +6,7 @@
 #    Jul 09, 2019 01:13:40 AM IST  platform: Linux
 
 import sys
-
+from tkinter import messagebox
 try:
 	import Tkinter as tk
 except ImportError:
@@ -94,22 +94,33 @@ class tumor:
 		self.Button1.configure(takefocus="0")
 		self.Button1.configure(text='''LOAD''')
 		self.Button1.configure(command = self.file_l)
+		
+		self.Button2 = tk.Button(top)
+		self.Button2.place(relx=0.7, rely=0.511, height=41, width=71)
+		self.Button2.configure(text='''SAVE''')
+		self.Button2.configure(width=71)
+		self.Button2.configure(command = tumor_support.save_stuff)
 
 	def file_l(self):
 		# print(tumor_support.file_list)
 		lis = tumor_support.file_list
-		for l in lis:
-			temp = l.split('/')[-1]
-			self.files_list.insert('end',(temp,0))
+		for l in lis.keys():
+			self.files_list.insert('end',(l ,"\t\t\t",lis[l]))
 
-		print("done")
+		
 
-	def click(self,e):
-
+	def click(self,e): 	
+		print("click")
 		lol = e.widget
-		selec = lol.curselection()
-		value = lol.get(selec[0])
+		idx = lol.curselection()
+		print("select",idx[0])
+		value = lol.get(idx[0])
+		value = value[0]
 		print(value)
+		res = tumor_support.draw_on_it(value)
+		print("back with",res)
+		lol.delete(idx[0])
+		lol.insert(idx[0],(value,"\t\t\t\t",res))
 
 
 # The following code is added to facilitate the Scrolled widgets you specified.

@@ -162,7 +162,7 @@ def input_file(path):
     
 
     print("areas", cs)
+    return cs[number]
     
 # print(len(x),len(y))
 # file_parse('/home/rohan/codes/LVP/VolumeAnalyser/Image_proc/png_files-20190624T064213Z-001/png_files')
-input_file("IM179.png")

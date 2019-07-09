@@ -61,10 +61,13 @@
 
 from vtk import *
 import glob
+import cv2
 
 def converter(folder_path,out_path):
 
     lis = glob.glob(folder_path +"/*")
+    tis = glob.glob(folder_path+"/*.pkl")
+    lis.remove(tis[0])
 
     for file_path in lis:
         lis = file_path.split('/')
@@ -91,9 +94,14 @@ def converter(folder_path,out_path):
         ###########################################################
 
         writer = vtkPNGWriter()
-        writer.SetFileName(out_path+ lis[-1]+ '.png')
+        write_path = out_path+ lis[-1]+ '.png'
+        writer.SetFileName(write_path)
         writer.SetInputConnection(applymap.GetOutputPort())
         writer.Write()
+        img = cv2.imread(write_path)
+        img = cv2.resize(img,(2048,2048),cv2.INTER_LINEAR)
+        cv2.imwrite(write_path,img)
+
     print("done")
 
 
