@@ -4,7 +4,7 @@ import glob
 
 drawing=False # true if mouse is pressed
 mode=True # if True, draw rectangle. Press 'm' to toggle to curve
-pixel_size = 0.388*0.388
+PIXEL_SIZE = 0.388*0.388
 # mouse callback function
 
 cs ={}
@@ -37,7 +37,7 @@ def count_pixel(img):
     pixels = np.count_nonzero(np.all(img==green,axis =2))
     
     # (512/2048)^2 for size management 
-    pixels = pixels * (0.0625) * (pixel_size)
+    pixels = pixels * (0.0625) * (PIXEL_SIZE)
 
     return pixels    
 
@@ -159,7 +159,7 @@ def input_file(path):
         
         elif k ==27:
             print('code terminated')
-            exit(0)
+            return cs[number]
     cv2.destroyAllWindows()
     
 

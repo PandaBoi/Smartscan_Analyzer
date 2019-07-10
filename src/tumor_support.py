@@ -30,39 +30,44 @@ except ImportError:
 file_list = {}
 
 def tumor_dir():
-    global file_list,out_path,directory
-    # print("working")
-    directory = filedialog.askdirectory(initialdir = "/home/rohan/codes/LVP",title = "select directory")
-    check = glob.glob(directory+"/*.pkl")
-    file_lis = glob.glob(directory+"/*")
-   
-    if len(check) == 1:
-        with open(check[0],'rb') as f:
-            file_list = pickle.load(f)
-            print(file_list)
-            file_lis.remove(check[0])
-
-    
-    
-    
-    all_files = [x.split('/')[-1] for x in file_lis ]
-    if len(check) ==0:
-        for l in all_files:
-            file_list[l] = 0.0
-
-
-
-    
-    out_path = directory.strip(directory.split('/')[-1]) + "converted_images/"
-
     try:
-        os.mkdir(out_path)
+        global file_list,out_path,directory
+        # print("working")
+        directory = filedialog.askdirectory(initialdir = "/home/rohan/codes/LVP",title = "select directory")
+        check = glob.glob(directory+"/*.pkl")
+        file_lis = glob.glob(directory+"/*")
+        newidea.caliberate(file_lis[-1])
+       
+        if len(check) == 1:
+            with open(check[0],'rb') as f:
+                file_list = pickle.load(f)
+                print(file_list)
+                file_lis.remove(check[0])
+
+        
+        
+        
+        all_files = [x.split('/')[-1] for x in file_lis ]
+        if len(check) ==0:
+            for l in all_files:
+                file_list[l] = 0.0
+
+
+
+        
+        out_path = directory.strip(directory.split('/')[-1]) + "converted_images/"
+
+        try:
+            os.mkdir(out_path)
+        except:
+            pass
+
+        newidea.converter(directory,out_path)
+
+        messagebox.showinfo('Done',"All files are converted!")
+
     except:
-        pass
-
-    newidea.converter(directory,out_path)
-
-    messagebox.showinfo('Done',"All files are converted!")
+        messagebox.showinfo('Error',"Please select a proper Directory!")
 
 def draw_on_it(name):
 
