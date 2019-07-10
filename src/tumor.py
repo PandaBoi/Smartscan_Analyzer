@@ -6,7 +6,7 @@
 #    Jul 09, 2019 01:13:40 AM IST  platform: Linux
 
 import sys
-
+from tkinter import messagebox
 try:
 	import Tkinter as tk
 except ImportError:
@@ -27,6 +27,9 @@ def vp_start_gui():
 	root = tk.Tk()
 	top = tumor (root)
 	tumor_support.init(root, top)
+	root.lift()
+	root.wm_attributes('-topmost',True)
+	root.after_idle(root.attributes,'-topmost',False)
 	root.mainloop()
 
 w = None
@@ -78,9 +81,18 @@ class tumor:
 				label="File")
 		self.sub_menu.add_command(label = 'Open_Dir',command = lambda : tumor_support.tumor_dir())
 		
-		self.files_list = ScrolledListBox(top)
-		self.files_list.place(relx=0.217, rely=0.111, relheight=0.773
-				, relwidth=0.443)
+
+		self.Frame1 = tk.Frame(top)
+		self.Frame1.place(relx=0.017, rely=0.044, relheight=0.922
+				, relwidth=0.958)
+		self.Frame1.configure(relief='groove')
+		self.Frame1.configure(borderwidth="2")
+		self.Frame1.configure(relief="groove")
+		self.Frame1.configure(width=575)
+
+		self.files_list = ScrolledListBox(self.Frame1)
+		self.files_list.place(relx=0.087, rely=0.072, relheight=0.742
+				, relwidth=0.445)				
 		self.files_list.configure(background="white")
 		self.files_list.configure(font="TkFixedFont")
 		self.files_list.configure(highlightcolor="#d9d9d9")
@@ -89,27 +101,48 @@ class tumor:
 		self.files_list.configure(width=10)
 		self.files_list.bind('<<ListboxSelect>>',lambda e: self.click(e))
 
-		self.Button1 = tk.Button(top)
-		self.Button1.place(relx=0.7, rely=0.356, height=31, width=64)
+
+		self.Button1 = tk.Button(self.Frame1)
+		self.Button1.place(relx=0.661, rely=0.241, height=41, width=91)		
 		self.Button1.configure(takefocus="0")
 		self.Button1.configure(text='''LOAD''')
 		self.Button1.configure(command = self.file_l)
+		
+		self.Button2 = tk.Button(self.Frame1)
+		self.Button2.place(relx=0.661, rely=0.506, height=41, width=91)		
+		self.Button2.configure(text='''SAVE''')
+		self.Button2.configure(width=71)
+		self.Button2.configure(command = tumor_support.save_stuff)
+
+		self.Button3 = tk.Button(self.Frame1)
+		self.Button3.place(relx=0.348, rely=0.867, height=41, width=181)		
+		self.Button3.configure(text='''Calculate Volume''')
+		self.Button3.configure(width=181)
+		self.Button3.configure(command = tumor_support.calc_vol)
 
 	def file_l(self):
 		# print(tumor_support.file_list)
 		lis = tumor_support.file_list
-		for l in lis:
-			temp = l.split('/')[-1]
-			self.files_list.insert('end',(temp,0))
+		for l in lis.keys():
+			self.files_list.insert('end',(l ,"\t\t\t",lis[l]))
 
-		print("done")
+		
 
-	def click(self,e):
-
-		lol = e.widget
-		selec = lol.curselection()
-		value = lol.get(selec[0])
-		print(value)
+	def click(self,e): 	
+		print("click")
+		try:
+			lol = e.widget
+			idx = lol.curselection()
+			print("select",idx[0])
+			value = lol.get(idx[0])
+			value = value[0]
+			print(value)
+			res = tumor_support.draw_on_it(value)
+			print("back with",res)
+			lol.delete(idx[0])
+			lol.insert(idx[0],(value,"\t\t\t\t",res))
+		except:
+			messagebox.showinfo('Error',"Please make a vaild selection")
 
 
 # The following code is added to facilitate the Scrolled widgets you specified.

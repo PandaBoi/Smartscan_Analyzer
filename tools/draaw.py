@@ -4,7 +4,7 @@ import glob
 
 drawing=False # true if mouse is pressed
 mode=True # if True, draw rectangle. Press 'm' to toggle to curve
-pixel_size = 0.388*0.388
+PIXEL_SIZE = 0.388*0.388
 # mouse callback function
 
 cs ={}
@@ -37,7 +37,7 @@ def count_pixel(img):
     pixels = np.count_nonzero(np.all(img==green,axis =2))
     
     # (512/2048)^2 for size management 
-    pixels = pixels * (0.0625) * (pixel_size)
+    pixels = pixels * (0.0625) * (PIXEL_SIZE)
 
     return pixels    
 
@@ -113,7 +113,8 @@ def input_file(path):
             break
         elif k ==27:
             print("code terminated")
-            exit(0)
+            break
+
     cv2.destroyAllWindows()
 
     
@@ -130,7 +131,7 @@ def input_file(path):
     # y_idx_min= np.where(y_min)
     except:
         print("please select a region")
-        return 
+        return 0.0
 
 
     im_cropped = im[y_min-4:y_max+4,x_min-4:x_max+4]
@@ -155,14 +156,15 @@ def input_file(path):
             cs[number] = count_pixel(im_use)
             # cs[number] = sum(temp)
             break
+        
         elif k ==27:
             print('code terminated')
-            exit(0)
+            return cs[number]
     cv2.destroyAllWindows()
     
 
     print("areas", cs)
+    return cs[number]
     
 # print(len(x),len(y))
 # file_parse('/home/rohan/codes/LVP/VolumeAnalyser/Image_proc/png_files-20190624T064213Z-001/png_files')
-input_file("IM179.png")

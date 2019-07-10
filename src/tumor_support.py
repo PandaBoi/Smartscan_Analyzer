@@ -6,11 +6,14 @@
 #    Jul 08, 2019 08:52:17 PM IST  platform: Linux
 
 import sys
-from tkinter import filedialog
-from tools import newidea
+sys.path.append('../')
+from tkinter import filedialog, messagebox
+from tools import newidea,draaw,find_area
 import os
 import glob
-import tumor as t
+import re
+import pickle
+
 
 try:
     import Tkinter as tk
@@ -24,22 +27,71 @@ except ImportError:
     import tkinter.ttk as ttk
     py3 = True
 
-file_list = []
+file_list = {}
+
 def tumor_dir():
-    global file_list
-    # print("working")
-    dir = filedialog.askdirectory(initialdir = "/home/rohan/codes/LVP",title = "select Dir")
-    # print(dir)
-    file_list = glob.glob(dir+"/*")
-    lis = dir.split('/')
-    out_path = dir.strip(lis[-1]) + "converted_images/"
-
     try:
-        os.mkdir(out_path)
-    except:
-        pass
-    newidea.converter(dir,out_path)
+        global file_list,out_path,directory
+        # print("working")
+        directory = filedialog.askdirectory(initialdir = "/home/rohan/codes/LVP",title = "select directory")
+        check = glob.glob(directory+"/*.pkl")
+        file_lis = glob.glob(directory+"/*")
+        newidea.caliberate(file_lis[-1])
+       
+        if len(check) == 1:
+            with open(check[0],'rb') as f:
+                file_list = pickle.load(f)
+                print(file_list)
+                file_lis.remove(check[0])
 
+        
+        
+        
+        all_files = [x.split('/')[-1] for x in file_lis ]
+        if len(check) ==0:
+            for l in all_files:
+                file_list[l] = 0.0
+
+
+
+        
+        out_path = directory.strip(directory.split('/')[-1]) + "converted_images/"
+
+        try:
+            os.mkdir(out_path)
+        except:
+            pass
+
+        newidea.converter(directory,out_path)
+
+        messagebox.showinfo('Done',"All files are converted!")
+
+    except:
+        messagebox.showinfo('Error',"Please select a proper Directory!")
+
+def draw_on_it(name):
+
+    file_path = out_path + name + '.png'
+    res = draaw.input_file(file_path)
+    file_list[name] = res
+
+    return res
+
+def save_stuff():
+
+    with open(directory + '/result.pkl','wb') as f:
+        pickle.dump(file_list, f)
+
+    messagebox.showinfo('Saved!',"The results until now have been saved!")
+
+  
+
+
+def calc_vol():
+
+    result_vol = find_area.find_volume(file_list)
+
+    messagebox.showinfo("Result","Volume is" + str(result_vol) + "mm^3")
 
 
 
