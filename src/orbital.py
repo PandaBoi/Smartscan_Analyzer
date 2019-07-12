@@ -49,15 +49,15 @@ def destroy_Toplevel1():
 	w = None
 
 class orbital:
-<<<<<<< Updated upstream
-    def __init__(self, top=None):
-        '''This class configures and populates the toplevel window.
-           top is the toplevel containing window.'''
-        _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
-        _fgcolor = '#000000'  # X11 color: 'black'
-        _compcolor = '#d9d9d9' # X11 color: 'gray85'
-        _ana1color = '#d9d9d9' # X11 color: 'gray85'
-        _ana2color = '#ececec' # Closest X11 color: 'gray92'
+
+	def __init__(self, top=None):
+		'''This class configures and populates the toplevel window.
+		   top is the toplevel containing window.'''
+		_bgcolor = '#d9d9d9'  # X11 color: 'gray85'
+		_fgcolor = '#000000'  # X11 color: 'black'
+		_compcolor = '#d9d9d9' # X11 color: 'gray85'
+		_ana1color = '#d9d9d9' # X11 color: 'gray85'
+		_ana2color = '#ececec' # Closest X11 color: 'gray92'
 
 		top.geometry("600x450+660+315")
 		top.title("New Toplevel")
@@ -70,25 +70,25 @@ class orbital:
 		self.Frame1.configure(relief="groove")
 		self.Frame1.configure(width=575)
 
-        self.sub_menu = tk.Menu(top,tearoff=0)
-        self.menubar.add_cascade(menu=self.sub_menu,
-                activebackground="#ececec",
-                activeforeground="#000000",
-                background="#d9d9d9",
-                compound="left",
-                font="TkMenuFont",
-                foreground="#000000",
-                label="File")
-        self.sub_menu1 = tk.Menu(top,tearoff=0)
-        self.sub_menu.add_cascade(menu=self.sub_menu1,
-                activebackground="#ececec",
-                activeforeground="#000000",
-                background="#d9d9d9",
-                compound="left",
-                font="TkMenuFont",
-                foreground="#000000",
-                label="Open Dir")
-=======
+		self.sub_menu = tk.Menu(top,tearoff=0)
+		self.menubar.add_cascade(menu=self.sub_menu,
+				activebackground="#ececec",
+				activeforeground="#000000",
+				background="#d9d9d9",
+				compound="left",
+				font="TkMenuFont",
+				foreground="#000000",
+				label="File")
+		self.sub_menu1 = tk.Menu(top,tearoff=0)
+		self.sub_menu.add_cascade(menu=self.sub_menu1,
+				activebackground="#ececec",
+				activeforeground="#000000",
+				background="#d9d9d9",
+				compound="left",
+				font="TkMenuFont",
+				foreground="#000000",
+				label="Open Dir")
+
 	def __init__(self, top=None):
 		'''This class configures and populates the toplevel window.
 		   top is the toplevel containing window.'''
@@ -183,7 +183,6 @@ class orbital:
 
 
 
->>>>>>> Stashed changes
 
 if __name__ == '__main__':
 	vp_start_gui()

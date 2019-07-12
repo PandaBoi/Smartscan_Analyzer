@@ -30,22 +30,11 @@ except ImportError:
 file_list = {}
 
 def tumor_dir():
-<<<<<<< Updated upstream
-    global file_list
-    # print("working")
-    dir = filedialog.askdirectory(initialdir = "/home/rohan/codes/LVP",title = "select Dir")
-    # print(dir)
-    file_list = glob.glob(dir+"/*")
-    lis = dir.split('/')
-    out_path = dir.strip(lis[-1]) + "converted_images/"
-=======
-    
-    global file_list,out_path,directory
-    file_list = {}
     try:
-        
+        global file_list,out_path,directory
         # print("working")
-        directory = filedialog.askdirectory(initialdir = "/home/rohan/codes/LVP",title = "select directory")
+        directory = filedialog.askdirectory(initialdir = "/home/rohan/codes/LVP",title = "select directory",\
+        	filetypes = (("png files","*.png"),("jpeg files","*.jpg")))
         check = glob.glob(directory+"/*.pkl")
         file_lis = glob.glob(directory+"/*")
         newidea.caliberate(file_lis[-1])
@@ -77,17 +66,11 @@ def tumor_dir():
         newidea.converter(directory,out_path)
 
         messagebox.showinfo('Done',"All files are converted!")
->>>>>>> Stashed changes
 
-    try:
-        os.mkdir(out_path)
     except:
         messagebox.showinfo('Error',"Please select a proper Directory!")
 
-<<<<<<< Updated upstream
-=======
-    messagebox.showinfo("Result","Volume is "  + str(result_vol) + "mm^3")
->>>>>>> Stashed changes
+def draw_on_it(name):
 
     file_path = out_path + name + '.png'
     res = draaw.input_file(file_path)
@@ -134,7 +117,5 @@ def destroy_window():
 if __name__ == '__main__':
     import tumor
     tumor.vp_start_gui()
-
-
 
 

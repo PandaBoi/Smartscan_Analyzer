@@ -6,15 +6,13 @@
 #    Jul 11, 2019 01:31:38 AM IST  platform: Linux
 
 import sys
-<<<<<<< Updated upstream
 
-=======
 sys.path.append('../')
 from tools import orb_area
 from tkinter import filedialog as fd,messagebox
 import glob,pickle
 from tools import find_area
->>>>>>> Stashed changes
+
 try:
 	import Tkinter as tk
 except ImportError:
@@ -24,10 +22,10 @@ try:
 	import ttk
 	py3 = False
 except ImportError:
-<<<<<<< Updated upstream
-    import tkinter.ttk as ttk
-    py3 = True
-=======
+
+	import tkinter.ttk as ttk
+	py3 = True
+
 	import tkinter.ttk as ttk
 	py3 = True
 
@@ -81,15 +79,17 @@ def draw_orb(img_name):
 
 def save_stuff():
 
-    with open(dir_path + 'orb_vol.pkl','wb') as f:
-        pickle.dump(files_list, f)
+	with open(dir_path + 'orb_vol.pkl','wb') as f:
+		pickle.dump(files_list, f)
 
-    messagebox.showinfo('Saved!',"The results until now have been saved!")
+	messagebox.showinfo('Saved!',"The results until now have been saved!")
 
   
 def calc_vol():
-	find_area.find_volume(files_list)
->>>>>>> Stashed changes
+	
+	res = find_area.find_volume(files_list)
+	messagebox.showinfo("result","Volume is " + str(res) + "mm^3")
+
 
 def init(top, gui, *args, **kwargs):
 	global w, top_level, root

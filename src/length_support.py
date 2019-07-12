@@ -32,7 +32,7 @@ def open_file():
     global dir_path,file_path,files_list
     files_list = {}
     file_path = fd.askopenfilenames(initialdir = '/home/rohan/codes/LVP' , title = 'select Files',\
-        filetypes = (("jpeg files","*.jpg"),("png files","*.png")))
+        filetypes = (("png files","*.png"),("jpeg files","*.jpg")))
     dir_path = file_path[0].strip(file_path[0].split('/')[-1])
     names = [f.split('/')[-1] for f in file_path]
     check = glob.glob(dir_path+"distances.pkl")
