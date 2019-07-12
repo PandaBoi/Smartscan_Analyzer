@@ -116,7 +116,7 @@ class length:
         self.file_list.delete('0','end')
         lis = length_support.files_list
         for l in lis.keys():
-            self.file_list.insert('end',(l ,"\t\t\t",lis[l]))
+            self.file_list.insert('end',(l ,"=>=>=>=>",lis[l]))
 
 
     def click(self,e):  
@@ -131,7 +131,7 @@ class length:
         res = length_support.calc_length(value)
         print("back with",res)
         lol.delete(idx[0])
-        lol.insert(idx[0],(value,"\t\t\t\t",res))
+        lol.insert(idx[0],(value,"=>=>=>=>",res))
 
 if __name__ == '__main__':
     vp_start_gui()
