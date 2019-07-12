@@ -6,7 +6,7 @@
 #    Jul 08, 2019 04:34:12 PM IST  platform: Linux
 
 import sys
-import second
+import length
 import tumor
 import orbital
 
@@ -29,7 +29,7 @@ def init(top, gui, *args, **kwargs):
     root = top
 
 def create_l_window():
-    second.create_second(root)
+    length.create_length(root)
     print("pressed length")
 
 
