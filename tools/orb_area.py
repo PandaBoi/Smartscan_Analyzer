@@ -46,6 +46,8 @@ def count_pixel(img):
 def random_area(img_path):
 # input the image path down here
 	global x,y
+	x =[]
+	y =[]
 	def crop_image(event,former_x,former_y,flags,param):
 		global current_former_x,current_former_y,drawing, mode
 

@@ -61,7 +61,7 @@ class Toplevel1:
 			"-underline 0 -overstrike 0"
 
 		top.geometry("600x450+654+218")
-		top.title("New Toplevel")
+		top.title("Smart Scan")
 
 		self.Frame1 = tk.Frame(top)
 		self.Frame1.place(relx=0.067, rely=0.044, relheight=0.9, relwidth=0.875)
@@ -82,6 +82,7 @@ class Toplevel1:
 		self.Button1.configure(disabledforeground="#b8a786")
 		self.Button1.configure(command = gui_support.create_l_window)
 		self.Button1.configure(width=121)
+		
 
 		self.Button2 = tk.Button(self.Frame1)
 		self.Button2.place(relx=0.362, rely=0.617, height=81, width=121)

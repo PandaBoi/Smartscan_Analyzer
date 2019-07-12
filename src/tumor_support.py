@@ -30,8 +30,20 @@ except ImportError:
 file_list = {}
 
 def tumor_dir():
+<<<<<<< Updated upstream
+    global file_list
+    # print("working")
+    dir = filedialog.askdirectory(initialdir = "/home/rohan/codes/LVP",title = "select Dir")
+    # print(dir)
+    file_list = glob.glob(dir+"/*")
+    lis = dir.split('/')
+    out_path = dir.strip(lis[-1]) + "converted_images/"
+=======
+    
+    global file_list,out_path,directory
+    file_list = {}
     try:
-        global file_list,out_path,directory
+        
         # print("working")
         directory = filedialog.askdirectory(initialdir = "/home/rohan/codes/LVP",title = "select directory")
         check = glob.glob(directory+"/*.pkl")
@@ -65,11 +77,17 @@ def tumor_dir():
         newidea.converter(directory,out_path)
 
         messagebox.showinfo('Done',"All files are converted!")
+>>>>>>> Stashed changes
 
+    try:
+        os.mkdir(out_path)
     except:
         messagebox.showinfo('Error',"Please select a proper Directory!")
 
-def draw_on_it(name):
+<<<<<<< Updated upstream
+=======
+    messagebox.showinfo("Result","Volume is "  + str(result_vol) + "mm^3")
+>>>>>>> Stashed changes
 
     file_path = out_path + name + '.png'
     res = draaw.input_file(file_path)

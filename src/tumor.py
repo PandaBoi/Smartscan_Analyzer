@@ -121,6 +121,7 @@ class tumor:
 		self.Button3.configure(command = tumor_support.calc_vol)
 
 	def file_l(self):
+		self.files_list.delete('0','end')
 		# print(tumor_support.file_list)
 		lis = tumor_support.file_list
 		for l in lis.keys():
