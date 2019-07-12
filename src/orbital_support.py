@@ -30,13 +30,13 @@ except ImportError:
 	py3 = True
 
 import os
-from pathfile import Path
+from pathlib import Path
 import sys
 
 p = sys.executable
 path = Path(p)
 
-initial = path.drive + path.root
+initial = path.anchor
 
 files_list = {}
 

@@ -161,7 +161,7 @@ class orbital:
 		self.Listbox1.delete('0','end')
 		lis = orbital_support.files_list
 		for l in lis.keys():
-			self.Listbox1.insert('end',(l ,"\t\t\t",lis[l]))
+			self.Listbox1.insert('end',(l ,"=>=>=>=>",lis[l]))
 
 	def click(self,e): 	
 		print("click")
@@ -175,7 +175,7 @@ class orbital:
 		res = orbital_support.draw_orb(value)
 		print("back with",res)
 		lol.delete(idx[0])
-		lol.insert(idx[0],(value,"\t\t\t\t",res))
+		lol.insert(idx[0],(value,"=>=>=>=>",res))
 		# except Exception as ex:
 		# 	print("error", type(ex).__name__)
 			
