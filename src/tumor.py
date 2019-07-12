@@ -125,7 +125,7 @@ class tumor:
 		# print(tumor_support.file_list)
 		lis = tumor_support.file_list
 		for l in lis.keys():
-			self.files_list.insert('end',(l ,"\t\t\t",lis[l]))
+			self.files_list.insert('end',(l ,"=>=>=>=>",lis[l]))
 
 		
 
@@ -141,7 +141,7 @@ class tumor:
 			res = tumor_support.draw_on_it(value)
 			print("back with",res)
 			lol.delete(idx[0])
-			lol.insert(idx[0],(value,"\t\t\t\t",res))
+			lol.insert(idx[0],(value,"=>=>=>=>",res))
 		except:
 			messagebox.showinfo('Error',"Please make a vaild selection")
 
