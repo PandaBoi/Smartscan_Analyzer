@@ -24,14 +24,21 @@ except ImportError:
     import tkinter.ttk as ttk
     py3 = True
 
+import os
+from pathfile import Path
+import sys
 
+p = sys.executable
+path = Path(p)
+
+initial = path.drive + path.root
 
 files_list = {}
 
 def open_file():
     global dir_path,file_path,files_list
     files_list = {}
-    file_path = fd.askopenfilenames(initialdir = '/home/rohan/codes/LVP' , title = 'select Files',\
+    file_path = fd.askopenfilenames(initialdir = initial , title = 'select Files',\
         filetypes = (("png files","*.png"),("jpeg files","*.jpg")))
     dir_path = file_path[0].strip(file_path[0].split('/')[-1])
     names = [f.split('/')[-1] for f in file_path]
