@@ -6,11 +6,15 @@
 #    Jul 11, 2019 01:31:38 AM IST  platform: Linux
 
 import sys
+<<<<<<< Updated upstream
+
+=======
 sys.path.append('../')
 from tools import orb_area
 from tkinter import filedialog as fd,messagebox
 import glob,pickle
-
+from tools import find_area
+>>>>>>> Stashed changes
 try:
 	import Tkinter as tk
 except ImportError:
@@ -20,6 +24,10 @@ try:
 	import ttk
 	py3 = False
 except ImportError:
+<<<<<<< Updated upstream
+    import tkinter.ttk as ttk
+    py3 = True
+=======
 	import tkinter.ttk as ttk
 	py3 = True
 
@@ -28,17 +36,30 @@ files_list = {}
 
 def open_file():
 	global dir_path,file_path,files_list
-
+	files_list = {}
 	file_path = fd.askopenfilenames(initialdir = '/home/rohan/codes/LVP' , title = 'select Files')
+	names = [f.split('/')[-1] for f in file_path]
 	dir_path = file_path[0].strip(file_path[0].split('/')[-1])
-	check = glob.glob(dir_path+"*.pkl")
+	check = glob.glob(dir_path+"orb_vol.pkl")
+	
 	if len(check)==0:
 		for f in file_path:
 			name = f.split('/')[-1]
 			files_list[name] = 0.0
 	else:
-		with open(check[0],'rb') as f:
-			files_list = pickle.load(f)
+		try:
+			with open(check[0],'rb') as f:
+				temp = pickle.load(f)
+			for n in names:
+				if n in temp.keys():
+					files_list[n] = temp[n]
+				else:
+					files_list[n] = 0.0
+		except EOFError:
+			for n in names:
+				files_list[n] =0.0
+
+
 
 
 	files = list(file_path)
@@ -60,13 +81,15 @@ def draw_orb(img_name):
 
 def save_stuff():
 
-    with open(dir_path + 'result.pkl','wb') as f:
-        pickle.dump(file_list, f)
+    with open(dir_path + 'orb_vol.pkl','wb') as f:
+        pickle.dump(files_list, f)
 
     messagebox.showinfo('Saved!',"The results until now have been saved!")
 
   
-
+def calc_vol():
+	find_area.find_volume(files_list)
+>>>>>>> Stashed changes
 
 def init(top, gui, *args, **kwargs):
 	global w, top_level, root
