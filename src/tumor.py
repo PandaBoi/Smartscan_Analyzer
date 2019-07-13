@@ -64,18 +64,19 @@ class tumor:
 		self.style.map('.',background=
 			[('selected', _compcolor), ('active',_ana2color)])
 
-		top.geometry("600x450+521+160")
+		top.geometry("600x450+637+161")
 		top.title("Tumor Estimation")
+		top.configure(background="#b14fe2")
 		top.configure(highlightcolor="black")
 
-		self.menubar = tk.Menu(top,font="TkMenuFont",bg=_bgcolor,fg=_fgcolor)
+		self.menubar = tk.Menu(top,font="TkMenuFont",bg='#d8d8ba',fg=_fgcolor)
 		top.configure(menu = self.menubar)
 
 		self.sub_menu = tk.Menu(top,tearoff=0)
 		self.menubar.add_cascade(menu=self.sub_menu,
 				activebackground="#ececec",
 				activeforeground="#000000",
-				background="#d9d9d9",
+				background="#d87c66",
 				font="TkMenuFont",
 				foreground="#000000",
 				label="File")
@@ -87,6 +88,7 @@ class tumor:
 				, relwidth=0.958)
 		self.Frame1.configure(relief='groove')
 		self.Frame1.configure(borderwidth="2")
+		self.Frame1.configure(background="#52c6d8")
 		self.Frame1.configure(relief="groove")
 		self.Frame1.configure(width=575)
 
@@ -105,6 +107,7 @@ class tumor:
 		self.Button1 = tk.Button(self.Frame1)
 		self.Button1.place(relx=0.661, rely=0.241, height=41, width=91)		
 		self.Button1.configure(takefocus="0")
+		self.Button1.configure(activebackground="#f9f9f9")
 		self.Button1.configure(text='''LOAD''')
 		self.Button1.configure(command = self.file_l)
 		
@@ -112,12 +115,14 @@ class tumor:
 		self.Button2.place(relx=0.661, rely=0.506, height=41, width=91)		
 		self.Button2.configure(text='''SAVE''')
 		self.Button2.configure(width=71)
+		self.Button2.configure(activebackground="#f9f9f9")
 		self.Button2.configure(command = tumor_support.save_stuff)
 
 		self.Button3 = tk.Button(self.Frame1)
 		self.Button3.place(relx=0.348, rely=0.867, height=41, width=181)		
 		self.Button3.configure(text='''Calculate Volume''')
 		self.Button3.configure(width=181)
+		self.Button3.configure(activebackground="#f9f9f9")
 		self.Button3.configure(command = tumor_support.calc_vol)
 
 	def file_l(self):

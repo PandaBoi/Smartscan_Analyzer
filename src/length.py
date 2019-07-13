@@ -58,8 +58,10 @@ class length:
         _ana1color = '#d9d9d9' # X11 color: 'gray85'
         _ana2color = '#ececec' # Closest X11 color: 'gray92'
 
-        top.geometry("613x474+635+190")
+        top.geometry("600x450+719+255")
         top.title("Length")
+        top.configure(background="#b14fe2")
+        top.configure(highlightcolor="black")
 
         self.Frame1 = tk.Frame(top)
         self.Frame1.place(relx=0.033, rely=0.084, relheight=0.876
@@ -67,6 +69,7 @@ class length:
         self.Frame1.configure(relief='groove')
         self.Frame1.configure(borderwidth="2")
         self.Frame1.configure(relief="groove")
+        self.Frame1.configure(background="#52c6d8")
         self.Frame1.configure(width=575)
 
         self.file_list = tk.Listbox(self.Frame1)
@@ -90,14 +93,14 @@ class length:
         self.Button2.configure(command = length_support.save_stuff)
 
 
-        self.menubar = tk.Menu(top,font="TkMenuFont",bg=_bgcolor,fg=_fgcolor)
+        self.menubar = tk.Menu(top,font="TkMenuFont",bg='#d8d8ba',fg=_fgcolor)
         top.configure(menu = self.menubar)
 
         self.sub_menu = tk.Menu(top,tearoff=0)
         self.menubar.add_cascade(menu=self.sub_menu,
                 activebackground="#ececec",
                 activeforeground="#000000",
-                background="#d9d9d9",
+                background="#d87c66",
                 compound="left",
                 font="TkMenuFont",
                 foreground="#000000",
