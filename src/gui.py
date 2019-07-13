@@ -60,24 +60,30 @@ class Toplevel1:
 		font9 = "-family Saab -size 20 -weight bold -slant roman "  \
 			"-underline 0 -overstrike 0"
 
-		top.geometry("600x450+654+218")
+		top.geometry("599x450+617+231")
 		top.title("Smart Scan")
+		top.configure(background="#b14fe2")
+		top.configure(highlightcolor="black")
+
 
 		self.Frame1 = tk.Frame(top)
-		self.Frame1.place(relx=0.067, rely=0.044, relheight=0.9, relwidth=0.875)
+		self.Frame1.place(relx=0.05, rely=0.044, relheight=0.9, relwidth=0.893)
 		self.Frame1.configure(relief='groove')
 		self.Frame1.configure(borderwidth="2")
 		self.Frame1.configure(relief="groove")
-		self.Frame1.configure(width=525)
+		self.Frame1.configure(background="#52c6d8")
+		self.Frame1.configure(width=535)
 
 		self.Label1 = tk.Label(self.Frame1)
-		self.Label1.place(relx=0.19, rely=0.198, height=141, width=309)
+		self.Label1.place(relx=0.206, rely=0.198, height=141, width=309)
 		self.Label1.configure(font=font9)
+		self.Label1.configure(activebackground="#ffffff")
+		self.Label1.configure(background="#99d0d8")
 		self.Label1.configure(text='''DICOM ANALYZER''')
 		self.Label1.configure(width=309)
 
 		self.Button1 = tk.Button(self.Frame1)
-		self.Button1.place(relx=0.076, rely=0.617, height=81, width=121)
+		self.Button1.place(relx=0.075, rely=0.617, height=81, width=121)
 		self.Button1.configure(text='''Calculate Length''')
 		self.Button1.configure(disabledforeground="#b8a786")
 		self.Button1.configure(command = gui_support.create_l_window)
@@ -85,13 +91,13 @@ class Toplevel1:
 		
 
 		self.Button2 = tk.Button(self.Frame1)
-		self.Button2.place(relx=0.362, rely=0.617, height=81, width=121)
+		self.Button2.place(relx=0.355, rely=0.617, height=81, width=121)
 		self.Button2.configure(text='''Tumor Volume''')
 		self.Button2.configure(width=121)
 		self.Button2.configure(command = gui_support.create_t_window)
 
 		self.Button3 = tk.Button(self.Frame1)
-		self.Button3.place(relx=0.648, rely=0.617, height=81, width=131)
+		self.Button3.place(relx=0.654, rely=0.617, height=81, width=131)
 		self.Button3.configure(text='''Orbital Volume''')
 		self.Button3.configure(width=131)
 		self.Button3.configure(command = gui_support.create_o_window)
