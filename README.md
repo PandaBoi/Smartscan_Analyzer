@@ -17,15 +17,21 @@ python3 gui.py
 
 #### Version 1.1.0
 
-		1.This is the page for distance calculator.
-		2.If you select 2 points on the image it will give the distance between that points in mm
+		1. This is the page for distance calculator.
+		2. If you select 2 points on the image it will give the distance between that points in mm
 
 #### Version 1.2.0
 		
-		1.Created pages in GUI for length calculation and Orbital Volume analysis
-		2.Added functionalities needed for both of them.
-		3.Minor fixes to popups and window placing.
-		4.First working prototype
+		1. Created pages in GUI for length calculation and Orbital Volume analysis
+		2. Added functionalities needed for both of them.
+		3. Minor fixes to popups and window placing.
+		4. First working prototype
+
+#### Version 1.3.0
+
+		1. Added colors to the GUI.
+		2. Minor bug fixes.
+		3. Screen Overview problem fixed.
 
 				
 		
