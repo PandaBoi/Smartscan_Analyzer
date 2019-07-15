@@ -32,6 +32,8 @@ python3 gui.py
 		1. Added colors to the GUI.
 		2. Minor bug fixes.
 		3. Screen Overview problem fixed.
+		4. Started storing parameters used for various function calculations(pixel size,thickness)
+
 
 				
 		
