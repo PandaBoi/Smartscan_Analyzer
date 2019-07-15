@@ -29,7 +29,7 @@ def vp_start_gui():
 	length_support.init(root, top)
 	root.lift()
 	root.call('wm', 'attributes', '.', '-topmost', True)
-	# root.after_idle(root.call, 'wm', 'attributes', '.', '-topmost', False)
+	root.after_idle(root.call, 'wm', 'attributes', '.', '-topmost', False)
 	root.mainloop()
 
 w = None
