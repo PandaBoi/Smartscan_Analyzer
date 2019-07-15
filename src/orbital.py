@@ -29,8 +29,8 @@ def vp_start_gui():
 	top = orbital (root)
 	orbital_support.init(root, top)
 	root.lift()
-	root.wm_attributes('-topmost',True)
-	root.after_idle(root.attributes,'-topmost',False)
+	root.call('wm', 'attributes', '.', '-topmost', True)
+	# root.after_idle(root.call, 'wm', 'attributes', '.', '-topmost', False)
 	root.mainloop()
 
 w = None
