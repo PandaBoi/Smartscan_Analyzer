@@ -14,13 +14,17 @@ from vtk import *
 import glob
 import cv2
 import pydicom
+import pickle
 from tools import draaw,find_area
 
 def converter(folder_path,out_path):
 
     lis = glob.glob(folder_path +"/*")
     tis = glob.glob(folder_path+"/*.pkl")
-    lis.remove(tis[0])
+    print(tis)
+    print(lis)
+    for t in tis:
+        lis.remove(t)
 
     for file_path in lis:
         lis = file_path.split('/')
@@ -58,14 +62,24 @@ def converter(folder_path,out_path):
     print("done")
 
 
-def caliberate(file_path):
+def caliberate(file_path,out_path):
 
     data = pydicom.dcmread(file_path)
     pixel = data[0x28,0x30].value
     draaw.PIXEL_SIZE = pixel[0]*pixel[1]
     slic = data[0x18,0x50].value
     space = data[0x18,0x88].value
-    find_area.THICKNESS = slic +space
+    # find_area.THICKNESS = slic + space
+    x = slic + space
+    q = {'pixel_size':pixel[0],'thickness': x}
+
+    storing = out_path + 'param.pkl'
+    with open(storing, 'wb') as f:
+        pickle.dump(q, f)
+        f.close()
+
+
+
 
 
 
