@@ -27,14 +27,21 @@ except ImportError:
     import tkinter.ttk as ttk
     py3 = True
 
+import os
+from pathlib import Path
+import sys
+
+p = sys.executable
+path = Path(p)
+
+initial = path.anchor
 file_list = {}
 
 def tumor_dir():
     try:
         global file_list,out_path,directory
         # print("working")
-        directory = filedialog.askdirectory(initialdir = "/home/rohan/codes/LVP",title = "select directory",\
-        	filetypes = (("png files","*.png"),("jpeg files","*.jpg")))
+        directory = filedialog.askdirectory(title = "select directory")
         check = glob.glob(directory+"/*.pkl")
         file_lis = glob.glob(directory+"/*")
         newidea.caliberate(file_lis[-1])
