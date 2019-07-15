@@ -75,7 +75,14 @@ def save_stuff():
 
 def calc_length(name):
     path = dir_path + name
-    res = distance_calcu.input_file(path)
+    f = dir_path+ 'param.pkl'
+    try:
+        with open(f,'rb') as x:
+            temp = pickle.load(x)
+        res = distance_calcu.input_file(path,temp['pixel_size'])
+    except:
+        res = distance_calcu.input_file(path)
+    
     files_list[name] = round(res, 4)
     res = round(res, 4)
     return res

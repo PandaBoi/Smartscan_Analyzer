@@ -4,7 +4,10 @@ from PIL import Image
 import math
 
 drawing=True # true if mouse is pressed
-def input_file(path):
+def input_file(path,pix = 0.388):
+
+	
+	PIXEL_SIZE = pix
 
 	def draw_circle(event,former_x,former_y,flags,param):
 		global current_former_x,current_former_y,drawing,distance
@@ -15,7 +18,7 @@ def input_file(path):
 				dx2= (current_former_x-former_x)**2
 				dy2= (current_former_y-former_y)**2
 				distance = math.sqrt(dx2 + dy2)
-				distance = distance * .25 * .388
+				distance = distance * .25 * PIXEL_SIZE
 				print(distance)
 				print("mm")
 				# current_former_x,current_former_y=former_x,former_y

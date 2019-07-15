@@ -12,6 +12,7 @@ from tools import orb_area
 from tkinter import filedialog as fd,messagebox
 import glob,pickle
 from tools import find_area
+import glob
 
 try:
 	import Tkinter as tk
@@ -43,7 +44,8 @@ files_list = {}
 def open_file():
 	global dir_path,file_path,files_list
 	files_list = {}
-	file_path = fd.askopenfilenames(initialdir = initial , title = 'select Files')
+	file_path = fd.askopenfilenames(initialdir = initial , title = 'select Files',\
+		filetypes = (("png files","*.png"),("jpeg files","*.jpg")))
 	names = [f.split('/')[-1] for f in file_path]
 	dir_path = file_path[0].strip(file_path[0].split('/')[-1])
 	check = glob.glob(dir_path+"orb_vol.pkl")
@@ -79,8 +81,18 @@ def open_file():
 def draw_orb(img_name):
 
 	using_path = dir_path + img_name 
-	# print("using" , using_path)
-	res = orb_area.random_area(using_path)
+	f = dir_path + 'param.pkl'
+	try:
+		with open(f,'rb') as x:
+			temp = pickle.load(x)
+		res = orb_area.random_area(using_path,temp['pixel_size']**2)
+	
+	except :
+		res = orb_area.random_area(using_path)
+
+
+			# print("using" , using_path)
+	
 	files_list[img_name] = res
 
 	return res
@@ -94,9 +106,14 @@ def save_stuff():
 
   
 def calc_vol():
-	
-	res = find_area.find_volume(files_list)
-	messagebox.showinfo("result","Volume is " + str(res) + "mm^3")
+	f = glob.glob(dir_path + 'param.pkl')
+	try:
+		with open(f,'rb') as x:
+			temp = pickle.load(x)
+		res = find_area.find_volume(files_list,temp['thickness'])
+	except:
+		res = find_area.find_volume(files_list,None)
+	messagebox.showinfo("result","Volume is " + str(round(res,4)) + "mm^3")
 
 
 def init(top, gui, *args, **kwargs):

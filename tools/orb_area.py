@@ -1,6 +1,8 @@
 
 import cv2
 import numpy as np 
+import glob
+import pickle
 
 drawing=False # true if mouse is pressed
 mode=True # if True, draw rectangle. Press 'm' to toggle to curve
@@ -8,7 +10,9 @@ mode=True # if True, draw rectangle. Press 'm' to toggle to curve
 # mouse callback function
 x =[]
 y =[]
-PIXEL_SIZE = 0.388*0.388
+
+
+
 
 def count_pixel(img):
 	
@@ -43,11 +47,13 @@ def count_pixel(img):
 #                 print('done')
 
 
-def random_area(img_path):
-# input the image path down here
-	global x,y
+def random_area(img_path,pix = 0.1505):
+	global x,y,PIXEL_SIZE
 	x =[]
 	y =[]
+# input the image path down here
+	PIXEL_SIZE = pix
+	
 	def crop_image(event,former_x,former_y,flags,param):
 		global current_former_x,current_former_y,drawing, mode
 
